@@ -12,16 +12,17 @@ namespace Calculatriceform
 {
     public partial class Form1 : Form
     {
+        private List<Button> buttons = new List<Button>();
+
         char op;
         public Form1()
         {
             InitializeComponent();
-            
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
             label1.Text="0";
         }
 
@@ -133,8 +134,8 @@ namespace Calculatriceform
         {
             if (label1.Text=="0")
                 label1.Text="4";
-            else 
-            label1.Text +="4";
+            else
+                label1.Text +="4";
         }
 
         private void btnMoins_Click(object sender, EventArgs e)
@@ -145,7 +146,7 @@ namespace Calculatriceform
 
         private void btnEgale_Click(object sender, EventArgs e)
         {
-            double resultat=0;
+            double resultat = 0;
             string[] operation = label1.Text.Split(op);
             switch (op)
             {
@@ -175,6 +176,22 @@ namespace Calculatriceform
             for (int i = 0; i<longueure; i++)
                 label1.Text+=texte[i];
 
+        }
+        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            foreach (Button button in buttons)
+            {
+                if (char.ToString(e.KeyChar) == button.Text)
+                {
+                    button.PerformClick();
+                }
+
+            }
+            if (char.ToString(e.KeyChar) == "c")
+            {
+                btnCE.PerformClick();
+            }
+         
         }
     }
 }
